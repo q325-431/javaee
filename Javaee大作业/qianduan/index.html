@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./res/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/sweetalert.css">
+    <script src="./js/jquery-3.2.1.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/sweetalert-dev.js"></script>
+    <title>计院小黑市</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background-color: #eee;
+        }
+
+        .header-items li {
+            list-style: none;
+            display: inline;
+            padding: 5px;
+            font-size: 14px;
+            line-height: 20px;
+            color: #777;
+        }
+
+        .left-nav>dd {
+            list-style: none;
+            height: 68.75px;
+            font-size: 16px;
+            color: #ffffff;
+            padding: 10px;
+            padding-top: 5px;
+            background-color: #232f3e;
+        }
+
+        .left-nav>dd:hover {
+            background-color: #ff8c00;
+            padding-left: 35px;
+            transition: padding-left 0.5s;
+        }
+
+        .left-nav>dt {
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 20px;
+            color: #1e9ed1;
+        }
+
+        .left-items>li,
+        .left-items>li>a,
+        .left-items>li>a:hover {
+            list-style: none;
+            display: inline;
+            font-size: 12px;
+            color: #ddd;
+            padding: 5px;
+            padding: 0;
+        }
+
+        .carousel-inner:hover {
+            cursor: pointer;
+            transform: scale(1.05, 1.05);
+            transition: transform 1s;
+        }
+
+        .goods-items {
+            display: inline-block;
+            margin-top: 20px;
+            /* height: 250px; */
+        }
+
+        .goods-class {
+            margin-top: 10px;
+            background-color: #dddddd;
+            border: 2px solid #aaaaaa;
+            border-radius: 5px;
+        }
+
+        .good-title {
+            text-align: center;
+            color: #777;
+        }
+
+        .foot-list {
+            display: inline-block;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .foot-list>li,
+        li>a {
+            list-style: none;
+            float: left;
+            color: #1e9ed1;
+            margin-left: 2px;
+            margin-right: 13px;
+        }
+
+        .foot-list>li>a:hover {
+            color: #1e9ed1;
+            text-decoration: underline;
+        }
+
+        #copyright {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .thumbnail p {
+            color: #ff8c00;
+            font-size: 18px;
+        }
+
+        .thumbnail img {
+            cursor: pointer;
+        }
+
+        .navbar a {
+            font: 600 16px/18px 'Open Sans', sans-serif;
+        }
+
+        .navbar a:hover {
+            background-image: -webkit-linear-gradient(bottom, red, #fd8403, yellow);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <!-- 导航条 -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Brand</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="./index.html">小黑市首页<span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">hi,来到小黑市</a></li>
+                    <li><a href="login.html">请登录</a></li>
+                    <li><a href="login.html">免费注册</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><img src="./res/head.jpg" alt="" width="50" height="50" style="border-radius: 25px;"></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">我的小黑市<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="./user.html">我的主页</a></li>
+                            <li><a href="./order.html">我的订单</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">切换账号</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="./shoppingCar.html">购物车</a></li>
+                    <li><a href="./sale.html">我要当卖家</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- 导航图 -->
+    <div class="container">
+        <div class="row" style="height: 530px;">
+            <div class="col-xs-3" style="padding:0;height: 530px;">
+                <dl class="left-nav">
+                    <dt>计院小黑市</dt>
+                    <dd>各类书籍
+                        <ul class="left-items">
+                            <li><a href="#">C语言教程</a></li>
+                            <li><a href="#">Java教程</a></li>
+                            <li><a href="#">离散数学</a></li>
+                            <li><a href="#">操作系统</a></li>
+                        </ul>
+                    </dd>
+                    <dd>文具用品
+                        <ul class="left-items">
+                            <li><a href="#">铅笔</a></li>
+                            <li><a href="#">钢笔</a></li>
+                            <li><a href="#">A4纸</a></li>
+                            <li><a href="#">笔记本</a></li>
+                            <li><a href="#">笔袋</a></li>
+                        </ul>
+                    </dd>
+                    <dd>运动器材
+                        <ul class="left-items">
+                            <li><a href="#">乒乓球拍</a></li>
+                            <li><a href="#">羽毛球拍</a></li>
+                            <li><a href="#">网球拍</a></li>
+                            <li><a href="#">网球</a></li>
+                            <li><a href="#">羽毛球</a></li>
+                        </ul>
+                    </dd>
+                    <dd>床上用品
+                        <ul class="left-items">
+                            <li><a href="#">被子</a></li>
+                            <li><a href="#">床上书桌</a></li>
+                            <li><a href="#">枕头</a></li>
+                            <li><a href="#">床单</a></li>
+                            <li><a href="#">床边挂衣钩</a></li>
+                        </ul>
+                    </dd>
+                    <dd>穿搭物品
+                        <ul class="left-items">
+                            <li><a href="#">衣服</a></li>
+                            <li><a href="#">裤子</a></li>
+                            <li><a href="#">鞋子</a></li>
+                            <li><a href="#">帽子</a></li>
+                            <li><a href="#">围巾</a></li>
+                        </ul>
+                    </dd>
+                    <dd>数码物品
+                        <ul class="left-items">
+                            <li><a href="#">耳机</a></li>
+                            <li><a href="#">数据线</a></li>
+                            <li><a href="#">游戏键盘</a></li>
+                            <li><a href="#">数位板</a></li>
+                            <li><a href="#">平板</a></li>
+                        </ul>
+                    </dd>
+                    <dd>其他物品</dd>
+                </dl>
+            </div>
+            <div class="col-xs-9" style="height: 52px;"></div>
+            <div class="col-xs-9" style="height: 480px;">
+                <div id="myCarousel" class="carousel slide">
+                    <!-- 轮播（Carousel）指标 -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                        <li data-target="#myCarousel" data-slide-to="4"></li>
+                    </ol>
+                    <!-- 轮播（Carousel）项目 -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img src="./res/pen.jpg" alt="First slide">
+                        </div>
+                        <div class="item">
+                            <img src="./res/book2.jpg" alt="Second slide">
+                        </div>
+                        <div class="item">
+                            <img src="./res/books1.jpg" alt="Third slide">
+                        </div>
+                        <div class="item">
+                            <img src="./res/cup.jpg" alt="Second slide">
+                        </div>
+                        <div class="item">
+                            <img src="./res/juanchi.jpg" alt="Second slide">
+                        </div>
+                    </div>
+                    <!-- 轮播（Carousel）导航 -->
+                    <a class="carousel-control right" href="#myCarousel" data-slide="next"> <span _ngcontent-c3=""
+                            aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span></a>
+                    <a class="carousel-control left" href="#myCarousel" data-slide="prev"> <span _ngcontent-c3=""
+                            aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 商品页 -->
+    <div class="container">
+        <!-- 各类书籍 -->
+        <div class="row">
+            <h2 class="col-xs-12 good-title">
+                &gt;&gt;&gt;&gt;&gt;各类书籍&lt;&lt;&lt;&lt;&lt;
+            </h2>
+        </div>
+        <div class="row goods-class">
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 文具用品 -->
+        <div class="row">
+            <h2 class="col-xs-12 good-title">
+                &gt;&gt;&gt;&gt;&gt;文具用品&lt;&lt;&lt;&lt;&lt;
+            </h2>
+        </div>
+        <div class="row goods-class">
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 运动器材 -->
+        <div class="row">
+            <h2 class="col-xs-12 good-title">
+                &gt;&gt;&gt;&gt;&gt;运动器材&lt;&lt;&lt;&lt;&lt;
+            </h2>
+        </div>
+        <div class="row goods-class">
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 床上用品 -->
+        <div class="row">
+            <h2 class="col-xs-12 good-title">
+                &gt;&gt;&gt;&gt;&gt;床上用品&lt;&lt;&lt;&lt;&lt;
+            </h2>
+        </div>
+        <div class="row goods-class">
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 穿搭物品 -->
+        <div class="row">
+            <h2 class="col-xs-12 good-title">
+                &gt;&gt;&gt;&gt;&gt;穿搭物品&lt;&lt;&lt;&lt;&lt;
+            </h2>
+        </div>
+        <div class="row goods-class">
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 数码物品 -->
+        <div class="row">
+            <h2 class="col-xs-12 good-title">
+                &gt;&gt;&gt;&gt;&gt;数码物品&lt;&lt;&lt;&lt;&lt;
+            </h2>
+        </div>
+        <div class="row goods-class">
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 其他物品 -->
+        <div class="row">
+            <h2 class="col-xs-12 good-title">
+                &gt;&gt;&gt;&gt;&gt;其他物品&lt;&lt;&lt;&lt;&lt;
+            </h2>
+        </div>
+        <div class="row goods-class" style="margin-bottom: 30px;">
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 goods-items">
+                <div class="thumbnail">
+                    <img src="./res/good1.jpg" title="点击查看详情" width="224" height="200">
+                    <div class="caption">
+                        <h3>高级山地自行车</h3>
+                        <p>￥300元</p>
+                        <p><a href="#" class="btn btn-primary" role="button">加入购物车</a> <a href="#"
+                                class="btn btn-default" role="button">立即购买</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 底部 -->
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12" style="border: 1px solid #999;">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10" style="text-align: center;">
+                <ul class="foot-list">
+                    <li><a href="#" style="border: none;">关于我们</a></li>
+                    <li><a href="#">联系我们</a></li>
+                    <li><a href="#">人才招聘</a></li>
+                    <li><a href="#">商家入驻</a></li>
+                    <li><a href="#">广告服务</a></li>
+                    <li><a href="#">手机界面</a></li>
+                    <li><a href="#">友情链接</a></li>
+                    <li><a href="#">销售联盟</a></li>
+                    <li><a href="#">讨论社区</a></li>
+                    <li><a href="#">热情公益</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

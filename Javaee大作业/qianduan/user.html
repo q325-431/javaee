@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./res/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/sweetalert.css">
+    <script src="./js/jquery-3.2.1.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/sweetalert-dev.js"></script>
+    <title>个人主页</title>
+    <style>
+        body {
+            position: relative;
+        }
+
+        .navbar a {
+            font: 600 16px/18px 'Open Sans', sans-serif;
+        }
+
+        .navbar a:hover {
+            background-image: -webkit-linear-gradient(bottom, red, #fd8403, yellow);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .foot-list {
+            display: inline-block;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .foot-list>li,
+        li>a {
+            list-style: none;
+            float: left;
+            color: #1e9ed1;
+            margin-left: 2px;
+            margin-right: 13px;
+        }
+
+        .foot-list>li>a:hover {
+            color: #1e9ed1;
+            text-decoration: underline;
+        }
+
+        #copyright {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        #user-table {
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+
+        .nav-pills>li>a {
+            display: block;
+        }
+
+        #user-table>.row>.table>tr>.none {
+            border-top: none;
+        }
+
+        .info-title {
+            font-size: 18px;
+            color: orange;
+            height: 15px;
+            text-indent: 5em;
+        }
+
+        .info-left {
+            font-size: 18px;
+            color: #555;
+        }
+
+        .info-right {
+            font-size: 18px;
+        }
+
+        .form-horizontal .control-label {
+            text-align: center;
+        }
+
+        .tcdkk {
+            background-color: pink;
+            position: absolute;
+            top: -80px;
+            z-index: 2;
+        }
+    </style>
+    <script>
+        $(function () {
+            window.alert = swal;
+            // alert("bu")
+        });
+    </script>
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Brand</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="./index.html">小黑市首页<span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">hi,来到小黑市</a></li>
+                    <li><a href="login.html">请登录</a></li>
+                    <li><a href="login.html">免费注册</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><img src="./res/head.jpg" alt="" width="50" height="50" style="border-radius: 25px;"></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">我的小黑市<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="./user.html">我的主页</a></li>
+                            <li><a href="./order.html">我的订单</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">切换账号</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="./shoppingCar.html">购物车</a></li>
+                    <li><a href="./sale.html">我要当卖家</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-3">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="list-group nav navbar-scroll">
+                            <a href="#" class="list-group-item list-group-item-action active"
+                                aria-current="true">个人信息</a>
+                            <a href="#info1" class="list-group-item list-group-item-action">用户信息</a>
+                            <a href="#info2" class="list-group-item list-group-item-action">实名认证</a>
+                            <a href="#info3" class="list-group-item list-group-item-action">其他信息</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-action active"
+                                aria-current="true">账户安全</a>
+                            <a href="#info4" class="list-group-item list-group-item-action">修改密码</a>
+                            <a href="#info5" class="list-group-item list-group-item-action">绑定手机</a>
+                            <a href="#info6" class="list-group-item list-group-item-action">绑定邮箱</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-9 innerbox" style="background-color: #eeeeee;height: 576px;" id="user-table">
+                <!-- 用户信息 -->
+                <div class="form-horizontal" id="info1">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label info-left" style="line-height: 100px;">头像</label>
+                        <div class="col-sm-10 info-right">
+                            <p class="form-control-static"><img src="./res/head.jpg" width="100" height="100"
+                                    style="border-radius: 50px;"></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label info-left">学号</label>
+                        <div class="col-sm-10 info-right">
+                            <p class="form-control-static info-right">20551120028</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label info-left">用户名</label>
+                        <div class="col-sm-10 info-right">
+                            <p class="form-control-static">YFUXZPSKBR</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 实名认证 -->
+                <div class="form-horizontal" id="info2">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label info-left">真实姓名</label>
+                        <div class="col-sm-10 info-right">
+                            <p class="form-control-static">林怡</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label info-left">电话号码</label>
+                        <div class="col-sm-10 info-right">
+                            <p class="form-control-static">18218695926</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label info-left">性别</label>
+                        <div class="col-sm-10 info-right">
+                            <p class="form-control-static">女</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label info-left">生日</label>
+                        <div class="col-sm-10 info-right">
+                            <p class="form-control-static">2001-2-28</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 其他信息 -->
+                <div class="form-horizontal" id="info3">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label info-left">地址</label>
+                        <div class="col-sm-10 info-right">
+                            <p class="form-control-static">广州市花都区迎宾大道西30号</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 账户安全 -->
+                <div class="form-horizontal">
+                    <!-- 修改密码 -->
+                    <div class="form-group" style="position: relative;" id="info4">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label info-left">修改密码</label>
+                            <div class="col-sm-4">
+                                <div class="btn btn-info"
+                                    onclick="document.getElementById('modify-password').style='display:block;';">点击修改密码
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div id="modify-password" class="tcdkk col-xs-offset-2 col-xs-8" style="display:none;">
+                            <div class="form-horizontal" role="form">
+                                <div class="form-group" style="margin-top: 15px;">
+                                    <label for="old-password" class="col-sm-offset-2 col-sm-2 control-label">原密码</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="old-password" placeholder="请输入原密码">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-password" class="col-sm-offset-2 col-sm-2 control-label">新密码</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="new-password" placeholder="请输入新密码">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-password_"
+                                        class="col-sm-offset-2 col-sm-2 control-label">确认密码</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="new-password_"
+                                            placeholder="请再次输入新密码">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-4 col-sm-6">
+                                        <button class="btn btn-info" style="outline: none;"
+                                            onclick="document.getElementById('modify-password').style='display:none;';">修改</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 绑定手机邮箱 -->
+                    <div class="form-group" style="position: relative;" id="info5">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label info-left">绑定手机</label>
+                            <div class="col-sm-4">
+                                <div class="btn btn-info"
+                                    onclick="document.getElementById('phone-bd').style='display:block;';">点击绑定手机</div>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div id="phone-bd" class="tcdkk col-xs-offset-2 col-xs-8" style="display:none;">
+                            <div class="form-horizontal" role="form">
+                                <div class="form-group" style="margin-top: 15px;">
+                                    <label for="phone-number" class="col-sm-offset-2 col-sm-2 control-label">手机号</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="phone-number" placeholder="请输入手机号">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-password" class="col-sm-offset-2 col-sm-2 control-label">验证码</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" id="new-password" placeholder="请输入验证码">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button style="outline: none;" class="btn btn-info"
+                                            id="sendCheckCode">发送验证码</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-4 col-sm-6">
+                                        <button class="btn btn-info" style="outline: none;"
+                                            onclick="document.getElementById('phone-bd').style='display:none;';">绑定</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="position: relative;" id="info6">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label info-left">绑定邮箱</label>
+                            <div class="col-sm-4">
+                                <div class="btn btn-info"
+                                    onclick="document.getElementById('email-bd').style='display:block;';">点击绑定邮箱</div>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div id="email-bd" class="tcdkk col-xs-offset-2 col-xs-8" style="display:none;">
+                            <div class="form-horizontal" role="form">
+                                <div class="form-group" style="margin-top: 15px;">
+                                    <label for="phone-number"
+                                        class="col-sm-offset-2 col-sm-2 control-label">邮箱地址</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="phone-number" placeholder="请输入邮箱">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-password" class="col-sm-offset-2 col-sm-2 control-label">验证码</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" id="new-password" placeholder="请输入验证码">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button style="outline: none;" class="btn btn-info"
+                                            id="sendCheckCode">发送验证码</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-4 col-sm-6">
+                                        <button class="btn btn-info" style="outline: none;"
+                                            onclick="document.getElementById('email-bd').style='display:none;';">绑定</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 底部 -->
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12" style="margin-top:30px;border: 1px solid #999;">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10" style="text-align: center;">
+                <ul class="foot-list">
+                    <li><a href="#" style="border: none;">关于我们</a></li>
+                    <li><a href="#">联系我们</a></li>
+                    <li><a href="#">人才招聘</a></li>
+                    <li><a href="#">商家入驻</a></li>
+                    <li><a href="#">广告服务</a></li>
+                    <li><a href="#">手机界面</a></li>
+                    <li><a href="#">友情链接</a></li>
+                    <li><a href="#">销售联盟</a></li>
+                    <li><a href="#">讨论社区</a></li>
+                    <li><a href="#">热情公益</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

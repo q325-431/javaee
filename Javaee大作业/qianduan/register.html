@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./bootstrap-3.4.1-dist/css/bootstrap.min.css">
+    <script src="./bootstrap-3.4.1-dist/js/jquery-3.2.1.min.js"></script>
+    <script src="./bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+    <title>注册界面-计院小黑市</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        body {
+            background-image: url(./res/background-register.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-size: 18px;
+            color: #0D3E46;
+        }
+    </style>
+    <script>
+        function checkAgree() {
+            return $("#agree").prop("checked");
+        }
+
+        function checkEmail() {
+            let email = $("#email").val();
+            //检测其中是否含有@并且是否只有一个
+            var tag = false;
+            for (let i = 0; i < email.length; i++) {
+                console.log(i);
+                if (email[i] == '@' && tag == false) {
+                    tag = true; //检测到第一个tag就continue
+                    continue;
+                }
+                if (email[i] == '@' && tag == true) {
+                    console.log(i + "break");
+                    tag = false; //检测到第二个就可以break了
+                    break;
+                }
+            }
+            return tag;
+        }
+
+        function checkPwd() {
+            //获取密码
+            let password = $("#password").val();
+            if (password.length < 8) { //密码小于八位不合格
+                return false;
+            }
+            //密码是否为纯数字
+            for (let i = 0; i < password.length; i++) {
+                if (password[i] < '0' || password[i] > '9') {
+                    return true;
+                }
+            }
+            return false;
+        }
+        //入口函数
+        $(function () {
+            //获取按钮
+            let btn = $("#sendCode");
+            //为按钮绑定单击事件
+            btn.click(function () {
+                //点击按钮后的处理
+                //先检测是否勾选协议
+                if (!checkAgree()) {
+                    alert("请勾选同意协议");
+                    return;
+                }
+                //再检测邮箱是否合格
+                if (!checkEmail()) {
+                    $("#emailInfo").css("display", "block");
+                    return;
+                }
+
+                //其次检测密码是否合格
+                if (!checkPwd()) {
+                    $("#passwordInfo").css("display", "block");
+                    return;
+                }
+                //最后检测密码是否一致
+                if ($("#password").val() != $("#password_").val()) {
+                    $("#password_Info").css("display", "block");
+                    return;
+                }
+                //最后一个检测--邮箱是否被注册过
+                $.post("checkEmailServlet", {
+                    email: $("#email").val()
+                }, function () {
+                    //回调函数
+                    //是否被注册过
+                }, "text");
+                //最后都无误就跳转
+                $.post("registerServlet", {
+                    "email": $("#email").val(),
+                    "password": $("#password").val()
+                }, function () {
+                    //回调函数
+                    //注册成功？失败？
+                }, "text");
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="form-horizontal" style="margin-top:10%;">
+        <!-- 邮箱 -->
+        <div class="form-group" style="margin-right: 0px;">
+            <label for="email" class="col-xs-4 control-label">邮箱</label>
+            <div class="col-xs-4">
+                <input type="email" class="form-control" id="email" placeholder="Email"
+                    onfocus="$('#emailInfo').css('display','none')">
+            </div>
+            <div id="emailInfo" class="alert alert-success col-xs-2" role="alert"
+                style="height:34px;margin:0;padding-top: 8px;display: none;">邮箱格式不正确,请重新输入</div>
+        </div>
+        <!-- 设置密码 -->
+        <div class="form-group" style="margin-right: 0px;">
+            <label for="password" class="col-xs-4 control-label">设置密码</label>
+            <div class="col-xs-4">
+                <input type="password" maxlength="20" class="form-control" id="password"
+                    onfocus="$('#passwordInfo').css('display','none')"
+                    placeholder="密码可以包含大小写字母,数字,特殊字符,不能为纯数字,至少8位,至多20位">
+            </div>
+            <div id="passwordInfo" class="alert alert-success col-xs-2" role="alert"
+                style="height:34px;margin:0;padding-top: 8px;display: none;">密码不能为纯数字,且至少8位</div>
+        </div>
+        <!-- 确认密码 -->
+        <div class="form-group" style="margin-right: 0px;">
+            <label for="password_" class="col-xs-4 control-label">确认密码</label>
+            <div class="col-xs-4">
+                <input type="password" maxlength="20" class="form-control" id="password_"
+                    onfocus="$('#password_Info').css('display','none')" placeholder="请再次输入您的密码">
+            </div>
+            <div id="password_Info" class="alert alert-success col-xs-2" role="alert"
+                style="height:34px;margin:0;padding-top: 8px;display: none;">两次密码不一致</div>
+        </div>
+        <!-- 验证码 -->
+        <div class="form-group" style="margin-right: 0px;">
+            <label for="checkCode" class="col-xs-4 control-label">验证码</label>
+            <div class="col-xs-3">
+                <input type="text" maxlength="6" class="form-control" id="checkCode"
+                    onfocus="$('#password_Info').css('display','none')" placeholder="请输入您收到的验证码">
+            </div>
+            <div class="col-xs-1">
+                <button class="btn btn-info" id="sendCode" style="outline: none;">发送验证码</button>
+            </div>
+            <div id="checkCodeInfo" class="alert alert-success col-xs-2" role="alert"
+                style="height:34px;margin:0;padding-top: 8px;display: none;">两次密码不一致</div>
+        </div>
+        <!-- 同意协议 -->
+        <div class="form-group" style="margin-right: 0px;">
+            <div class="col-xs-offset-4 col-xs-2">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" id="agree">已阅读并同意xxx协议
+                    </label>
+                </div>
+            </div>
+            <div class="col-xs-offset-1 col-xs-3">
+                <div class="checkbox">
+                    <a href="forgetPassword.html">已有账户,立即登录</a>
+                </div>
+            </div>
+        </div>
+        <!-- 立即注册 -->
+        <div class="form-group" style="margin-right: 0px;">
+            <div class="col-sm-offset-5 col-xs-6">
+                <button type="submit" class="btn btn-primary" id="btn" style="outline: none;">立即注册</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
